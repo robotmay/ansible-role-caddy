@@ -1,11 +1,8 @@
-- name: Remove Caddy files in order to update
+- name: Remove Caddy temp files
   file:
     path: "{{ item }}"
     state: absent
-  when: caddy_force_update | bool
-  loop:
-    - /usr/local/bin/caddy
-    - /var/tmp/caddy/caddy
+  with_fileglob: /var/tmp/caddy*
   tags:
     - caddy
 
@@ -43,7 +40,7 @@
         dest: /var/tmp
         timeout: 480
       when: not caddy_download_custom_build
-  when: not caddy_bin.stat.exists
+  when: caddy_force_update or not caddy_bin.stat.exists
   tags:
     - caddy
 

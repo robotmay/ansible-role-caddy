@@ -6,8 +6,8 @@ Wants=network-online.target
 
 [Service]
 Restart=on-failure
-StartLimitInterval=86400
-StartLimitBurst=5
+RestartSec=5
+StartLimitInterval=0
 User={{ caddy_user }}
 Group={{ caddy_group }}
 Environment=CADDYPATH={{ caddy_ssl_path }}
