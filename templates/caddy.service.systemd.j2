@@ -15,7 +15,7 @@ ExecStartPre=/usr/local/bin/caddy -conf={{ caddy_config_path }}/{{ caddy_config_
 ExecStart=/usr/local/bin/caddy -log={{ caddy_log_path }}/caddy.log -agree=true -conf={{ caddy_config_path }}/{{ caddy_config_file }} -root={{ caddy_root }}
 ExecReload=/bin/kill -USR1 $MAINPID
 LimitNOFILE=1048576
-LimitNPROC=64
+LimitNPROC=512
 PrivateTmp=true
 PrivateDevices=true
 ProtectHome={{ caddy_systemd_protect_home }}
